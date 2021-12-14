@@ -2,12 +2,17 @@ import React, {useState} from "react";
 import { connect } from "react-redux";
 import { addTodoItem } from "../action/action";
 
+import "../style.css"
+
 const AddTodo = (props) => {
+
     const [text, setText] = useState("");
+
     const onButtonClick = () => {
         props.addTodoItem(text)
-        console.log(text)
+        setText("");
     }
+
     return (
         <div>
             <input
@@ -15,7 +20,7 @@ const AddTodo = (props) => {
                 value={text}
                 onChange={e => setText(e.target.value)} 
             />
-            <button onClick={onButtonClick}>Add Todo</button>
+            <button className="addBtn" onClick={onButtonClick}>Add Todo</button>
         </div>
     )
 }

@@ -1,19 +1,32 @@
 import React from "react";
 import { connect } from "react-redux";
+import { deleteTodoItem, completeTodoItem } from "../action/action";
 
-const TodoList = ({todos}) => {
+import "../style.css"
 
-    console.log(todos)
+const TodoList = (props) => {
+
+    const onClickDeleteButton = (id) => {
+        props.deleteTodoItem(id);
+    }
+
+    const markAsComplete = (id) =>{
+        props.completeTodoItem(id)
+    }
 
     return(
-        <div>
-            <ul>
+        <div className="todoList">
+            <ul className="list">
                 {
-                    todos.map((todo) => {
+                    props.todos.map((todo) => {
                         return (
-                            <li key={todo.id}>
+                            <li
+                                className={`${todo.isComplete ? "checked" : ""}`}
+                                key={todo.id}
+                                onClick={() => markAsComplete(todo.id)}
+                            >
                                 {todo.text}
-                                <span>x</span>
+                                <span onClick={() => onClickDeleteButton(todo.id)} className="close">x</span>
                             </li>
                         )
                     })
@@ -30,4 +43,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(TodoList);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteTodoItem: (id) => { dispatch(deleteTodoItem(id)) },
+        completeTodoItem: (id) => {dispatch(completeTodoItem(id))}
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

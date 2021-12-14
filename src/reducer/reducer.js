@@ -2,16 +2,14 @@
 
 const initialState = {
     todos: [
-        {id: 1, text: "Alisveris Yap", isComplete: false},
-        {id: 2, text: "Yemek Yap", isComplete: false}
+        {id: 1, text: "Go Shopping", isComplete: false},
+        {id: 2, text: "Walk the Dog", isComplete: true}
     ]
 }
 
 //* reducer is a function which has 2 parameters state and action
 const reducer = (state = initialState, action) => {
-    console.log(state)
-    console.log(action)
-    switch(action.type) {
+    switch (action.type) {
         case 'ADD_ITEM':
             return {
                 ...state,
@@ -24,6 +22,23 @@ const reducer = (state = initialState, action) => {
                     }
                 ]
             }
+
+        case 'DELETE_ITEM':
+            let newTodos = state.todos.filter(todo => todo.id !== action.payload)
+            return {
+                ...state,
+                todos: newTodos
+            }
+
+        case 'COMPLETE_ITEM':
+            return {
+                ...state,
+                todos: state.todos.map(todo =>
+                    todo.id === action.payload
+                        ? { ...todo, isComplete: !todo.isComplete }
+                        : todo)
+            }
+
         default:
             return state;
     }

@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+    font-family: cursive;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.container {
+    background-color: white;
+    width: 40%;
+    margin: 50px auto;
+}
+
+#header {
+    background-color: #334E5C;
+    padding: 30px;
+    text-align: center;
+    color: white;
+    border-radius: 30px;
+    
+}
+
+
+#header:after {
+    content: "";
+    display: table;
+    clear: both;
+} 
+
+h2{
+    margin-bottom: 10px;
+}
+
+input {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 75%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+}
+.addBtn {
+    padding: 10px;
+    width: 25%;
+    background: #d9d9d9;
+    color: #555;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.4s;
+    border-radius: 0;
+}
+
+.addBtn:hover {
+    background-color: #bbb;
+}
+
+
+ul li {
+    cursor: pointer;
+    position: relative;
+    list-style-type: none;
+    padding: 12px 8px 12px 40px;
+    background: #E27B47;
+    border-radius: 25px;
+    font-size: 18px;
+    transition: 0.4s;
+    text-transform: uppercase;
+ 
+
+}
+
+/* to make a different color odd list element */
+ul li:nth-child(odd) {
+    background: #EFCA58;
+}
+
+ul li:hover {
+    transform: scale(1.02);
+    opacity: 0.8;
+    
+}
+
+/* to make line-through list element */
+ul li.checked {
+    background: #EE3A59;
+    color: black;
+    text-decoration: line-through;
+    
+}
+
+/* it will add in javascript*/
+.close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+    color: black;
+}
+.close:hover {
+    background-color: #652E79;
+    color: white;
+    border-radius: 50%;
+    opacity: 1;
+}
+
+.todoList {
+    padding: 65px 8px 12px 5px;
+}
