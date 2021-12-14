@@ -1,16 +1,33 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const TodoList = () => {
+const TodoList = ({todos}) => {
+
+    console.log(todos)
 
     return(
         <div>
             <ul>
-                <li>todo 1</li>
-                <li>todo 2</li>
-                <li>todo 3</li>
+                {
+                    todos.map((todo) => {
+                        return (
+                            <li key={todo.id}>
+                                {todo.text}
+                                <span>x</span>
+                            </li>
+                        )
+                    })
+                }
             </ul>
         </div>
     )
 }
 
-export default TodoList;
+const mapStateToProps = (state) => {
+    const { todos } = state;
+    return {
+        todos
+    }
+}
+
+export default connect(mapStateToProps)(TodoList);

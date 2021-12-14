@@ -1,12 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
+import { connect } from "react-redux";
+import { addTodoItem } from "../action/action";
 
-const AddTodo = () => {
+const AddTodo = (props) => {
+    const [text, setText] = useState("");
+    const onButtonClick = () => {
+        props.addTodoItem(text)
+        console.log(text)
+    }
     return (
         <div>
-            <input placeholder="add todo" />
-            <button>Add Todo</button>
+            <input
+                placeholder="add todo"
+                value={text}
+                onChange={e => setText(e.target.value)} 
+            />
+            <button onClick={onButtonClick}>Add Todo</button>
         </div>
     )
 }
 
-export default AddTodo;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addTodoItem: (text) => { dispatch(addTodoItem(text)) }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(AddTodo);
